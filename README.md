@@ -1,2 +1,3 @@
-# CineSphere
-Movie App | React Native, Expo - Android, iOS
+# Cinesphere
+
+Android/iOS Movies App | React Native, Expo
