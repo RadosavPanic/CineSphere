@@ -1,17 +1,21 @@
-import { images } from "@/constants/images";
-import { icons } from "@/constants/icons";
 import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  ScrollView,
-  Text,
   View,
+  ScrollView,
+  Image,
+  Text,
+  FlatList,
+  ActivityIndicator,
 } from "react-native";
-import SearchBar from "@/components/SearchBar/SearchBar";
 import { useRouter } from "expo-router";
+
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
+
+import SearchBar from "@/components/SearchBar/SearchBar";
+import MovieCard from "@/components/MovieCard/MovieCard";
+
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
 
 const Index = () => {
   const router = useRouter();
@@ -54,9 +58,7 @@ const Index = () => {
 
               <FlatList
                 data={movies}
-                renderItem={({ item }) => (
-                  <Text className="text-white text-sm">{item.title}</Text>
-                )}
+                renderItem={({ item }) => <MovieCard {...item} />}
                 keyExtractor={(item) => item.id.toString()}
                 numColumns={3}
                 columnWrapperStyle={{
