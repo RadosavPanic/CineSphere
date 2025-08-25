@@ -8,6 +8,7 @@ import MovieCard from "@/components/MovieCard/MovieCard";
 import { images } from "@/constants/images";
 import { icons } from "@/constants/icons";
 import SearchBar from "@/components/SearchBar/SearchBar";
+import { updateSearchCount } from "@/services/appwrite";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -42,6 +43,12 @@ const Search = () => {
       setShowEmptyMessage(false); // reset whenever typing again
     };
   }, [searchQuery]);
+
+  useEffect(() => {
+    if (movies?.length! > 0 && movies?.[0]) {
+      updateSearchCount(searchQuery, movies[0]);
+    }
+  }, [movies]);
 
   return (
     <View className="flex-1 bg-primary">
